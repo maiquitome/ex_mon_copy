@@ -2,6 +2,7 @@ defmodule ExMonCopy do
   @moduledoc """
   Documentation for `ExMonCopy`.
   """
+  @computer_name "Charizard"
 
   @doc """
   Create Player.
@@ -45,8 +46,8 @@ defmodule ExMonCopy do
 
   """
   def start_game(human) do
-    computer = ExMonCopy.create_player("Charizard", :fire_spin, :claw_slash, :heal)
-
-    ExMonCopy.Game.start(computer, human)
+    @computer_name
+    |> ExMonCopy.create_player(:fire_spin, :claw_slash, :heal)
+    |> ExMonCopy.Game.start(human)
   end
 end
