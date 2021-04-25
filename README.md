@@ -28,8 +28,8 @@ iex> ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
 
 ### 3. Starting the game
 ```bash
-iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-%ExMonCopy.Player{
+iex> human_pokemon = ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
+%ExMon.Player{
   life_points: 100,
   moves: %{
     average_attack: :tail_whip,
