@@ -43,3 +43,30 @@ iex> human_pokemon = ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :h
 iex> ExMon.start_game(human_pokemon)
 {:ok, #PID<0.450.0>}
 ```
+
+### 4. Printing game status
+```bash
+iex> ExMon.Game.info
+%{
+  computer: %ExMon.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMon.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :started,
+  turn: :human
+}
+```

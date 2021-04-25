@@ -1,6 +1,29 @@
 defmodule ExMonCopy.Game do
+  @moduledoc """
+  Stores game information.
+  """
   use Agent
 
+  @doc """
+  Starts the game.
+
+  ## Examples
+
+      iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
+      %ExMonCopy.Player{
+        life_points: 100,
+        moves: %{
+          average_attack: :tail_whip,
+          healing_power: :heal,
+          random_attack: :thunderbolt
+        },
+        name: "Pikachu"
+      }
+
+      iex> ExMonCopy.start_game(human_pokemon)
+      {:ok, #PID<0.450.0>}
+
+  """
   def start(computer, human) do
     initial_value = %{
       computer: computer,
@@ -12,5 +35,39 @@ defmodule ExMonCopy.Game do
     }
 
     Agent.start_link(fn -> initial_value end, name: __MODULE__)
+  end
+
+  @doc """
+  Printing game status.
+
+  Examples
+
+      iex> ExMonCopy.Game.info
+      %{
+        computer: %ExMonCopy.Player{
+          life_points: 100,
+          moves: %{
+            average_attack: :claw_slash,
+            healing_power: :heal,
+            random_attack: :fire_spin
+          },
+          name: "Charizard"
+        },
+        human: %ExMonCopy.Player{
+          life_points: 100,
+          moves: %{
+            average_attack: :tail_whip,
+            healing_power: :heal,
+            random_attack: :thunderbolt
+          },
+          name: "Pikachu"
+        },
+        status: :started,
+        turn: :human
+      }
+
+  """
+  def info do
+    Agent.get(__MODULE__, & &1)
   end
 end
