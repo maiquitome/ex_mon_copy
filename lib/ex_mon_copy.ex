@@ -23,4 +23,30 @@ defmodule ExMonCopy do
   def create_player(name, random_attack, average_attack, healing_power) do
     ExMonCopy.Player.build(name, random_attack, average_attack, healing_power)
   end
+
+  @doc """
+  Starts the game.
+
+  ## Examples
+
+      iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
+      %ExMonCopy.Player{
+        life_points: 100,
+        moves: %{
+          average_attack: :tail_whip,
+          healing_power: :heal,
+          random_attack: :thunderbolt
+        },
+        name: "Pikachu"
+      }
+
+      iex> ExMonCopy.start_game(human_pokemon)
+      {:ok, #PID<0.450.0>}
+
+  """
+  def start_game(human) do
+    computer = ExMonCopy.create_player("Charizard", :fire_spin, :claw_slash, :heal)
+
+    ExMonCopy.Game.start(computer, human)
+  end
 end
