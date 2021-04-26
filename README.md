@@ -103,7 +103,7 @@ iex> ExMonCopy.start_game(human_pokemon)
 ```
 ### 6. Returns the human pokemon data
 ```bash
-iex> ExMonCopy.Game.human
+iex> ExMonCopy.Game.fetch_player(:human)
 %ExMonCopy.Player{
   life_points: 100,
   moves: %{
@@ -116,7 +116,7 @@ iex> ExMonCopy.Game.human
 ```
 ### 7. Returns the computer pokemon data
 ```bash
-iex> ExMonCopy.Game.computer
+iex> ExMonCopy.Game.fetch_player(:computer)
 %ExMonCopy.Player{
   life_points: 100,
   moves: %{
