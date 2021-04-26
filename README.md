@@ -1,7 +1,7 @@
 ### 1. Creating the player
 ```bash
-iex> ExMon.Player.build("Pikachu", :thunderbolt, :tail_whip, :heal)
-%ExMon.Player{
+iex> ExMonCopy.Player.build("Pikachu", :thunderbolt, :tail_whip, :heal)
+%ExMonCopy.Player{
   life_points: 100,
   moves: %{
     average_attack: :tail_whip,
@@ -14,8 +14,8 @@ iex> ExMon.Player.build("Pikachu", :thunderbolt, :tail_whip, :heal)
 
 ### 2. Creating the player in the main module
 ```bash
-iex> ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-%ExMon.Player{
+iex> ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
+%ExMonCopy.Player{
   life_points: 100,
   moves: %{
     average_attack: :tail_whip,
@@ -28,8 +28,8 @@ iex> ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
 
 ### 3. Starting the game
 ```bash
-iex> human_pokemon = ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-%ExMon.Player{
+iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
+%ExMonCopy.Player{
   life_points: 100,
   moves: %{
     average_attack: :tail_whip,
@@ -40,15 +40,15 @@ iex> human_pokemon = ExMon.create_player("Pikachu", :thunderbolt, :tail_whip, :h
 }
 ```
 ```bash
-iex> ExMon.start_game(human_pokemon)
+iex> ExMonCopy.start_game(human_pokemon)
 {:ok, #PID<0.450.0>}
 ```
 
 ### 4. Printing game info
 ```bash
-iex> ExMon.Game.info
+iex> ExMonCopy.Game.info
 %{
-  computer: %ExMon.Player{
+  computer: %ExMonCopy.Player{
     life_points: 100,
     moves: %{
       average_attack: :claw_slash,
@@ -57,7 +57,7 @@ iex> ExMon.Game.info
     },
     name: "Charizard"
   },
-  human: %ExMon.Player{
+  human: %ExMonCopy.Player{
     life_points: 100,
     moves: %{
       average_attack: :tail_whip,
@@ -72,12 +72,12 @@ iex> ExMon.Game.info
 ```
 ### 5. Printing the round message
 ```bash
-iex> ExMon.start_game(human_pokemon)
+iex> ExMonCopy.start_game(human_pokemon)
 
  ===== The game is started! =====
 
 %{
-  computer: %ExMon.Player{
+  computer: %ExMonCopy.Player{
     life_points: 100,
     moves: %{
       average_attack: :claw_slash,
@@ -86,7 +86,7 @@ iex> ExMon.start_game(human_pokemon)
     },
     name: "Charizard"
   },
-  human: %ExMon.Player{
+  human: %ExMonCopy.Player{
     life_points: 100,
     moves: %{
       average_attack: :tail_whip,
@@ -138,4 +138,23 @@ not
 ```bash
 iex> ExMonCopy.Game.Actions.fetch_move(:test)
 {:error, :test}
+```
+
+### 9. Printing error or success message when making the move.
+```bash
+iex> ExMonCopy.make_move(:teste)
+
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          Invalid Move: teste
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+:ok
+```
+```bash
+iex> ExMonCopy.make_move(:heal)
+"performs healing"
+```
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+"performs attack"
 ```

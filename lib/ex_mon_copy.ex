@@ -52,4 +52,31 @@ defmodule ExMonCopy do
 
     ExMonCopy.Game.Status.print_round_message()
   end
+
+  @doc """
+  Making move.
+
+  ## Examples
+
+
+
+  """
+  def make_move(move) do
+    move
+    |> ExMonCopy.Game.Actions.fetch_move()
+    |> do_move()
+  end
+
+  # iex> ExMonCopy.Game.Actions.fetch_move(:test)
+  # {:error, :test}
+  defp do_move({:error, move}), do: ExMonCopy.Game.Status.print_wrong_move_message(move)
+
+  # iex> ExMonCopy.Game.Actions.fetch_move(:thunderbolt)
+  # {:ok, :random_attack}
+  defp do_move({:ok, move}) do
+    case move do
+      :healing_power -> "performs healing"
+      move -> "performs attack"
+    end
+  end
 end

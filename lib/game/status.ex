@@ -39,13 +39,26 @@ defmodule ExMonCopy.Game.Status do
 
   """
   def print_round_message() do
-    "\n ===== The game is started! ===== \n"
+    "
+    ===== The game is started! =====
+    "
     |> IO.puts()
 
     ExMonCopy.Game.info()
     |> IO.inspect()
 
-    "-----------------------------------"
+    "
+    ---------------------------------
+    "
+    |> IO.puts()
+  end
+
+  def print_wrong_move_message(move) do
+    "
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          Invalid Move: #{move}
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    "
     |> IO.puts()
   end
 end
