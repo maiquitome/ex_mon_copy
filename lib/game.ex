@@ -38,7 +38,7 @@ defmodule ExMonCopy.Game do
   end
 
   @doc """
-  Printing game status.
+  Printing game info.
 
   Examples
 
@@ -70,4 +70,38 @@ defmodule ExMonCopy.Game do
   def info do
     Agent.get(__MODULE__, & &1)
   end
+
+  @doc """
+  Returns the human pokemon data.
+
+  ## Examples
+      iex> ExMonCopy.Game.human
+      %ExMonCopy.Player{
+        life_points: 100,
+        moves: %{
+          average_attack: :tail_whip,
+          healing_power: :heal,
+          random_attack: :thunderbolt
+        },
+        name: "Pikachu"
+      }
+  """
+  def human, do: info() |> Map.get(:human)
+
+  @doc """
+  Returns the computer pokemon data.
+
+  ## Examples
+      iex> ExMonCopy.Game.computer
+      %ExMonCopy.Player{
+        life_points: 100,
+        moves: %{
+          average_attack: :claw_slash,
+          healing_power: :heal,
+          random_attack: :fire_spin
+        },
+        name: "Charizard"
+      }
+  """
+  def computer, do: info() |> Map.get(:computer)
 end

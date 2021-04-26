@@ -101,3 +101,29 @@ iex> ExMon.start_game(human_pokemon)
 -----------------------------------
 :ok
 ```
+### 6. Returns the human pokemon data
+```bash
+iex> ExMonCopy.Game.human
+%ExMonCopy.Player{
+  life_points: 100,
+  moves: %{
+    average_attack: :tail_whip,
+    healing_power: :heal,
+    random_attack: :thunderbolt
+  },
+  name: "Pikachu"
+}
+```
+### 7. Returns the computer pokemon data
+```bash
+iex> ExMonCopy.Game.computer
+%ExMonCopy.Player{
+  life_points: 100,
+  moves: %{
+    average_attack: :claw_slash,
+    healing_power: :heal,
+    random_attack: :fire_spin
+  },
+  name: "Charizard"
+}
+```
