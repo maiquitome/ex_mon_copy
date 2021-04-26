@@ -49,5 +49,7 @@ defmodule ExMonCopy do
     @computer_name
     |> ExMonCopy.create_player(:fire_spin, :claw_slash, :heal)
     |> ExMonCopy.Game.start(human)
+
+    ExMonCopy.Game.Status.print_round_message()
   end
 end

@@ -70,3 +70,34 @@ iex> ExMon.Game.info
   turn: :human
 }
 ```
+### 5. Printing the round message
+```bash
+iex> ExMon.start_game(human_pokemon)
+
+ ===== The game is started! =====
+
+%{
+  computer: %ExMon.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMon.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :started,
+  turn: :human
+}
+-----------------------------------
+:ok
+```
