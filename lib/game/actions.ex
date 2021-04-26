@@ -29,7 +29,7 @@ defmodule ExMonCopy.Game.Actions do
 
   """
   def fetch_move(move) do
-    ExMonCopy.Game.human()
+    ExMonCopy.Game.fetch_player(:human)
     |> Map.get(:moves)
     |> find_move(move)
   end

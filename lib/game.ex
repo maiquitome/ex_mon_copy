@@ -72,27 +72,11 @@ defmodule ExMonCopy.Game do
   end
 
   @doc """
-  Returns the human pokemon data.
+  Returns the human or computer pokemon data.
 
   ## Examples
-      iex> ExMonCopy.Game.human
-      %ExMonCopy.Player{
-        life_points: 100,
-        moves: %{
-          average_attack: :tail_whip,
-          healing_power: :heal,
-          random_attack: :thunderbolt
-        },
-        name: "Pikachu"
-      }
-  """
-  def human, do: info() |> Map.get(:human)
 
-  @doc """
-  Returns the computer pokemon data.
-
-  ## Examples
-      iex> ExMonCopy.Game.computer
+      iex> ExMonCopy.Game.fetch_player(:computer)
       %ExMonCopy.Player{
         life_points: 100,
         moves: %{
@@ -102,8 +86,9 @@ defmodule ExMonCopy.Game do
         },
         name: "Charizard"
       }
+
   """
-  def computer, do: info() |> Map.get(:computer)
+  def fetch_player(player), do: info() |> Map.get(player)
 
   @doc """
   Return whose turn it is to play.
