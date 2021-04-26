@@ -127,3 +127,15 @@ iex> ExMonCopy.Game.computer
   name: "Charizard"
 }
 ```
+
+### 8. Checks whether the movement exists or not
+exists
+```bash
+iex> ExMonCopy.Game.Actions.fetch_move(:thunderbolt)
+{:ok, :random_attack}
+```
+not
+```bash
+iex> ExMonCopy.Game.Actions.fetch_move(:test)
+{:error, :test}
+```
