@@ -158,6 +158,7 @@ iex> ExMonCopy.make_move(:heal)
 iex> ExMonCopy.make_move(:thunderbolt)
 "performs attack"
 ```
+
 ### 10. Printing a random number when attacking
 ```bash
 iex> ExMonCopy.make_move(:thunderbolt)
@@ -167,3 +168,30 @@ iex> ExMonCopy.make_move(:thunderbolt)
 iex> ExMonCopy.make_move(:thunderbolt)
 10
 ```
+
+### 11. Causing damage to the opponent
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+%ExMonCopy.Player{
+  life_points: 75,
+  moves: %{
+    average_attack: :claw_slash,
+    healing_power: :heal,
+    random_attack: :fire_spin
+  },
+  name: "Charizard"
+}
+```
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+%ExMonCopy.Player{
+  life_points: 85,
+  moves: %{
+    average_attack: :claw_slash,
+    healing_power: :heal,
+    random_attack: :fire_spin
+  },
+  name: "Charizard"
+}
+```
+!!! Elixir is immutable, so we always need to _reassign_ the values
