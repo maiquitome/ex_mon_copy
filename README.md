@@ -44,7 +44,7 @@ iex> ExMon.start_game(human_pokemon)
 {:ok, #PID<0.450.0>}
 ```
 
-### 4. Printing game status
+### 4. Printing game info
 ```bash
 iex> ExMon.Game.info
 %{
