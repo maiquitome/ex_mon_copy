@@ -158,3 +158,12 @@ iex> ExMonCopy.make_move(:heal)
 iex> ExMonCopy.make_move(:thunderbolt)
 "performs attack"
 ```
+### 10. Printing a random number when attacking
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+26
+iex> ExMonCopy.make_move(:thunderbolt)
+15
+iex> ExMonCopy.make_move(:thunderbolt)
+10
+```

@@ -104,4 +104,9 @@ defmodule ExMonCopy.Game do
       }
   """
   def computer, do: info() |> Map.get(:computer)
+
+  @doc """
+  Return whose turn it is to play.
+  """
+  def turn, do: info() |> Map.get(:turn)
 end

@@ -76,7 +76,7 @@ defmodule ExMonCopy do
   defp do_move({:ok, move}) do
     case move do
       :healing_power -> "performs healing"
-      move -> "performs attack"
+      move -> ExMonCopy.Game.Actions.attack(move)
     end
   end
 end

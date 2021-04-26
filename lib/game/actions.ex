@@ -1,4 +1,21 @@
 defmodule ExMonCopy.Game.Actions do
+  @moduledoc """
+  Player actions.
+  """
+
+  @doc """
+
+  """
+  def attack(move) do
+    case ExMonCopy.Game.turn() do
+      :human ->
+        ExMonCopy.Game.Actions.Attack.attack_opponent(:computer, move)
+
+      :computer ->
+        ExMonCopy.Game.Actions.Attack.attack_opponent(:human, move)
+    end
+  end
+
   @doc """
   Checks whether the movement exists or not.
 
