@@ -18,9 +18,34 @@ defmodule ExMonCopy.Game.Actions.Attack do
   defp calculate_life_damage(life_points, damage) when life_points - damage < 0, do: 0
   defp calculate_life_damage(life_points, damage), do: life_points - damage
 
-  defp update_opponent_life(remaining_life_points, opponent) do
-    opponent
-    |> ExMonCopy.Game.fetch_player()
-    |> Map.put(:life_points, remaining_life_points)
+  @typedoc """
+  A current opponent struct is a human or computer struct, e.g.
+
+  %ExMonCopy.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  }
+  """
+  @type current_opponent_struct :: struct
+
+  defp update_opponent_life(remaining_life_points, current_opponent_struct) do
+    updated_opponent_struct =
+      current_opponent_struct
+      |> ExMonCopy.Game.fetch_player()
+      |> Map.put(:life_points, remaining_life_points)
+
+    updated_opponent_struct
+    |> update_player_state(current_opponent_struct)
+  end
+
+  defp update_player_state(updated_player_struct, human_or_computer) do
+    ExMonCopy.Game.info()
+    |> Map.put(human_or_computer, updated_player_struct)
+    |> ExMonCopy.Game.update()
   end
 end

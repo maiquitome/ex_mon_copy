@@ -38,9 +38,9 @@ defmodule ExMonCopy.Game do
   end
 
   @doc """
-  Printing game info.
+  Returns game info.
 
-  Examples
+  ## Examples
 
       iex> ExMonCopy.Game.info
       %{
@@ -69,6 +69,19 @@ defmodule ExMonCopy.Game do
   """
   def info do
     Agent.get(__MODULE__, & &1)
+  end
+
+  @doc """
+  Changes the previous game info by the updated game info.
+
+  ## What does the game info have?
+  * computer player struct
+  * human player struct
+  * status
+  * turn
+  """
+  def update(updated_game_info) do
+    Agent.update(__MODULE__, fn _previous_game_info -> updated_game_info end)
   end
 
   @doc """
