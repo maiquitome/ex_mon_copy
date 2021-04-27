@@ -54,11 +54,15 @@ defmodule ExMonCopy do
   end
 
   @doc """
-  Making move.
+  Attack the opponent or heal yourself.
 
   ## Examples
 
+      iex> ExMonCopy.make_move(:thunderbolt)
 
+        ===== You attacked the computer causing 30 damage. =====
+
+      :ok
 
   """
   def make_move(move) do

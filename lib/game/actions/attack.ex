@@ -2,14 +2,14 @@ defmodule ExMonCopy.Game.Actions.Attack do
   @average_attack 18..25
   @random_attack 10..35
 
-  def attack_opponent(opponent, move) do
-    damage = calculate_power(move)
+  def attack_opponent(opponent_atom, move_atom) do
+    damage = calculate_power(move_atom)
 
-    opponent
+    opponent_atom
     |> ExMonCopy.Game.fetch_player()
     |> Map.get(:life_points)
     |> calculate_life_damage(damage)
-    |> update_opponent_life(opponent)
+    |> update_opponent_life(opponent_atom)
   end
 
   defp calculate_power(:average_attack), do: Enum.random(@average_attack)
@@ -33,19 +33,27 @@ defmodule ExMonCopy.Game.Actions.Attack do
   """
   @type current_opponent_struct :: struct
 
-  defp update_opponent_life(remaining_life_points, current_opponent_struct) do
+  defp update_opponent_life(remaining_life_points, opponent_atom) do
     updated_opponent_struct =
-      current_opponent_struct
+      opponent_atom
       |> ExMonCopy.Game.fetch_player()
       |> Map.put(:life_points, remaining_life_points)
 
     updated_opponent_struct
-    |> update_player_state(current_opponent_struct)
+    |> update_player_state(opponent_atom)
   end
 
-  defp update_player_state(updated_player_struct, human_or_computer) do
+  @type human_or_computer :: atom
+  @type updated_player :: struct
+  defp update_player_state(updated_player, human_or_computer) do
+    current_life_points = ExMonCopy.Game.info()[human_or_computer].life_points
+
+    damage = current_life_points - updated_player.life_points
+
     ExMonCopy.Game.info()
-    |> Map.put(human_or_computer, updated_player_struct)
+    |> Map.put(human_or_computer, updated_player)
     |> ExMonCopy.Game.update()
+
+    ExMonCopy.Game.Status.print_move_message(human_or_computer, :attack, damage)
   end
 end

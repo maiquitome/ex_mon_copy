@@ -195,3 +195,12 @@ iex> ExMonCopy.make_move(:thunderbolt)
 }
 ```
 !!! Elixir is immutable, so we always need to _reassign_ the values
+
+### 12. Printing the Attack Message
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+
+    ===== You attacked the computer causing 30 damage. =====
+
+:ok
+```

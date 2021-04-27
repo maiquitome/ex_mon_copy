@@ -61,4 +61,18 @@ defmodule ExMonCopy.Game.Status do
     "
     |> IO.puts()
   end
+
+  def print_move_message(:computer, :attack, damage) do
+    "
+    ===== You attacked the computer causing #{damage} damage. =====
+    "
+    |> IO.puts()
+  end
+
+  def print_move_message(:human, :attack, damage) do
+    "
+    ===== The computer attacked you causing #{damage} damage. =====
+    "
+    |> IO.puts()
+  end
 end
