@@ -53,6 +53,7 @@ defmodule ExMonCopy do
     ExMonCopy.Game.Status.print_round_message()
   end
 
+  @spec make_move(:average_attack | :random_attack | :healing_power) :: :ok
   @doc """
   Attack the opponent or heal yourself.
 
@@ -82,5 +83,8 @@ defmodule ExMonCopy do
       :healing_power -> "performs healing"
       move -> ExMonCopy.Game.Actions.attack(move)
     end
+
+    ExMonCopy.Game.info()
+    |> ExMonCopy.Game.Status.print_round_message()
   end
 end

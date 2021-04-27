@@ -196,11 +196,73 @@ iex> ExMonCopy.make_move(:thunderbolt)
 ```
 !!! Elixir is immutable, so we always need to _reassign_ the values
 
-### 12. Printing the Attack Message
+### 12. Changing the game state
 ```bash
 iex> ExMonCopy.make_move(:thunderbolt)
 
-    ===== You attacked the computer causing 30 damage. =====
+===== You attacked the computer causing 34 damage. =====
+
+
+===== It is the computer turn to play =====
+
+%{
+  computer: %ExMonCopy.Player{
+    life_points: 66,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMonCopy.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :continue,
+  turn: :computer
+}
+
+------------------------------------------
+:ok
+```
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+
+===== The computer attacked you causing 11 damage. =====
+
+
+========= It is your turn to play! =========
+
+%{
+  computer: %ExMonCopy.Player{
+    life_points: 66,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMonCopy.Player{
+    life_points: 89,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :continue,
+  turn: :human
+}
+
+--------------------------------------------
 
 :ok
 ```

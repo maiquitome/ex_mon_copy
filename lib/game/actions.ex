@@ -3,7 +3,17 @@ defmodule ExMonCopy.Game.Actions do
   Player actions.
   """
 
+  @spec attack(:average_attack | :random_attack) :: :ok
   @doc """
+  Attack the opponent.
+
+  ## Examples
+
+      iex> ExMonCopy.make_move(:thunderbolt)
+
+        ===== You attacked the computer causing 30 damage. =====
+
+      :ok
 
   """
   def attack(move) do
