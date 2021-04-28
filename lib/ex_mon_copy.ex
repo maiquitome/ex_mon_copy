@@ -68,6 +68,15 @@ defmodule ExMonCopy do
 
   """
   def make_move(move) do
+    ExMonCopy.Game.info()
+    |> Map.get(:status)
+    |> handle_status(move)
+  end
+
+  defp handle_status(:game_over, _move),
+    do: ExMonCopy.Game.Status.print_round_message(ExMonCopy.Game.info())
+
+  defp handle_status(_other_state, move) do
     move
     |> ExMonCopy.Game.Actions.fetch_move()
     |> do_move()
