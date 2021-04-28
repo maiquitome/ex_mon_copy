@@ -303,3 +303,70 @@ iex> ExMonCopy.make_move(:heal)
 
 :ok
 ```
+### 14. Creating the computer turn
+```bash
+iex> ExMonCopy.make_move(:thunderbolt)
+
+===== You attacked the computer causing 12 damage. =====
+
+
+===== It is the computer turn to play =====
+
+%{
+  computer: %ExMonCopy.Player{
+    life_points: 88,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMonCopy.Player{
+    life_points: 100,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :continue,
+  turn: :computer
+}
+
+------------------------------------------
+
+
+===== The computer attacked you causing 22 damage. =====
+
+
+========= It is your turn to play! =========
+
+%{
+  computer: %ExMonCopy.Player{
+    life_points: 88,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMonCopy.Player{
+    life_points: 78,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :continue,
+  turn: :human
+}
+
+--------------------------------------------
+
+:ok
+```

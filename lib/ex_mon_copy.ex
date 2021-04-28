@@ -3,6 +3,7 @@ defmodule ExMonCopy do
   Documentation for `ExMonCopy`.
   """
   @computer_name "Charizard"
+  @computer_moves [:average_attack, :random_attack, :healing_power]
 
   @doc """
   Create Player.
@@ -70,6 +71,8 @@ defmodule ExMonCopy do
     move
     |> ExMonCopy.Game.Actions.fetch_move()
     |> do_move()
+
+    computer_move(ExMonCopy.Game.info())
   end
 
   @spec do_move({:error, atom} | {:ok, :average_attack | :healing_power | :random_attack}) :: :ok
@@ -84,4 +87,11 @@ defmodule ExMonCopy do
     ExMonCopy.Game.info()
     |> ExMonCopy.Game.Status.print_round_message()
   end
+
+  defp computer_move(%{turn: :computer, status: :continue}) do
+    {:ok, Enum.random(@computer_moves)}
+    |> do_move()
+  end
+
+  defp computer_move(_), do: :ok
 end
