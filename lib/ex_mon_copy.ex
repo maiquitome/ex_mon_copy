@@ -72,15 +72,12 @@ defmodule ExMonCopy do
     |> do_move()
   end
 
-  # iex> ExMonCopy.Game.Actions.fetch_move(:test)
-  # {:error, :test}
+  @spec do_move({:error, atom} | {:ok, :average_attack | :healing_power | :random_attack}) :: :ok
   defp do_move({:error, move}), do: ExMonCopy.Game.Status.print_wrong_move_message(move)
 
-  # iex> ExMonCopy.Game.Actions.fetch_move(:thunderbolt)
-  # {:ok, :random_attack}
   defp do_move({:ok, move}) do
     case move do
-      :healing_power -> "performs healing"
+      :healing_power -> ExMonCopy.Game.Actions.heal()
       move -> ExMonCopy.Game.Actions.attack(move)
     end
 

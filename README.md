@@ -266,3 +266,40 @@ iex> ExMonCopy.make_move(:thunderbolt)
 
 :ok
 ```
+### 13. Creating the healing action
+
+```bash
+iex> ExMonCopy.make_move(:heal)
+
+===== You recovered yourself to 68 life points. =====
+
+
+===== It is the computer turn to play =====
+
+%{
+  computer: %ExMonCopy.Player{
+    life_points: 59,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMonCopy.Player{
+    life_points: 68,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :continue,
+  turn: :computer
+}
+
+------------------------------------------
+
+:ok
+```

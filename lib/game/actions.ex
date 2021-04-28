@@ -27,6 +27,20 @@ defmodule ExMonCopy.Game.Actions do
   end
 
   @doc """
+  Restores life points from the human or computer.
+  """
+  @spec heal :: any
+  def heal do
+    case ExMonCopy.Game.turn() do
+      :human ->
+        ExMonCopy.Game.Actions.Heal.restores_life_points(:human)
+
+      :computer ->
+        ExMonCopy.Game.Actions.Heal.restores_life_points(:computer)
+    end
+  end
+
+  @doc """
   Checks whether the movement exists or not.
 
   ## Examples

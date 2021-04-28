@@ -4,6 +4,24 @@ defmodule ExMonCopy.Game do
   """
   use Agent
 
+  @spec start(
+          %ExMonCopy.Player{
+            moves: %{
+              :average_attack => atom(),
+              :healing_power => atom(),
+              :random_attack => atom()
+            },
+            name: String.t()
+          },
+          %ExMonCopy.Player{
+            moves: %{
+              :average_attack => atom(),
+              :healing_power => atom(),
+              :random_attack => atom()
+            },
+            name: String.t()
+          }
+        ) :: {:error, any} | {:ok, pid}
   @doc """
   Starts the game.
 
@@ -71,6 +89,7 @@ defmodule ExMonCopy.Game do
     Agent.get(__MODULE__, & &1)
   end
 
+  @spec update(map()) :: :ok
   @doc """
   Changes the previous game info by the updated game info.
 
@@ -87,7 +106,7 @@ defmodule ExMonCopy.Game do
     end)
   end
 
-  @spec fetch_player(atom) :: struct
+  @spec fetch_player(:human | :computer) :: struct
   @doc """
   Returns the human or computer pokemon data.
 
@@ -118,7 +137,7 @@ defmodule ExMonCopy.Game do
   """
   def turn, do: info() |> Map.get(:turn)
 
-  # @spec update_game_status(map) :: map
+  @spec update_game_status(map) :: map
   defp update_game_status(
          %{
            human: %ExMonCopy.Player{life_points: human_life},

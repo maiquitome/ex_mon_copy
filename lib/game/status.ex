@@ -111,13 +111,25 @@ defmodule ExMonCopy.Game.Status do
     |> IO.puts()
   end
 
-  def print_move_message(:computer, :attack, damage) do
-    "\n===== You attacked the computer causing #{damage} damage. =====\n"
+  @spec print_move_message(:computer | :human, :attack | :healing, number()) :: :ok
+
+  def print_move_message(:computer, :attack, life_points) do
+    "\n===== You attacked the computer causing #{life_points} damage. =====\n"
     |> IO.puts()
   end
 
-  def print_move_message(:human, :attack, damage) do
-    "\n===== The computer attacked you causing #{damage} damage. =====\n"
+  def print_move_message(:human, :attack, life_points) do
+    "\n===== The computer attacked you causing #{life_points} damage. =====\n"
+    |> IO.puts()
+  end
+
+  def print_move_message(:computer, :healing, life_points) do
+    "\n===== The computer recovered itself to #{life_points} life points. =====\n"
+    |> IO.puts()
+  end
+
+  def print_move_message(:human, :healing, life_points) do
+    "\n===== You recovered yourself to #{life_points} life points. =====\n"
     |> IO.puts()
   end
 end
