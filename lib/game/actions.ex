@@ -6,23 +6,14 @@ defmodule ExMonCopy.Game.Actions do
   @spec attack(:average_attack | :random_attack) :: :ok
   @doc """
   Attack the opponent.
-
-  ## Examples
-
-      iex> ExMonCopy.make_move(:thunderbolt)
-
-        ===== You attacked the computer causing 30 damage. =====
-
-      :ok
-
   """
-  def attack(move) do
+  def attack(move_type) do
     case ExMonCopy.Game.turn() do
       :human ->
-        ExMonCopy.Game.Actions.Attack.attack_opponent(:computer, move)
+        ExMonCopy.Game.Actions.Attack.attack_opponent(:computer, move_type)
 
       :computer ->
-        ExMonCopy.Game.Actions.Attack.attack_opponent(:human, move)
+        ExMonCopy.Game.Actions.Attack.attack_opponent(:human, move_type)
     end
   end
 

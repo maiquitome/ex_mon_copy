@@ -11,7 +11,7 @@ defmodule ExMonCopy do
   ## Examples
 
       iex> ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-      %ExMon.Player{
+      %ExMonCopy.Player{
         life_points: 100,
         moves: %{
           average_attack: :tail_whip,
@@ -28,23 +28,6 @@ defmodule ExMonCopy do
 
   @doc """
   Starts the game.
-
-  ## Examples
-
-      iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-      %ExMonCopy.Player{
-        life_points: 100,
-        moves: %{
-          average_attack: :tail_whip,
-          healing_power: :heal,
-          random_attack: :thunderbolt
-        },
-        name: "Pikachu"
-      }
-
-      iex> ExMonCopy.start_game(human_pokemon)
-      {:ok, #PID<0.450.0>}
-
   """
   def start_game(human) do
     @computer_name

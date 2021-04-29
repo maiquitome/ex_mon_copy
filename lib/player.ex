@@ -23,7 +23,7 @@ defmodule ExMonCopy.Player do
   ## Examples
 
       iex> ExMonCopy.Player.build("Pikachu", :thunderbolt, :tail_whip, :heal)
-      %ExMon.Player{
+      %ExMonCopy.Player{
         life_points: 100,
         moves: %{
           average_attack: :tail_whip,

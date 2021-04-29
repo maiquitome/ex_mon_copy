@@ -23,24 +23,7 @@ defmodule ExMonCopy.Game do
           }
         ) :: {:error, any} | {:ok, pid}
   @doc """
-  Starts the game.
-
-  ## Examples
-
-      iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-      %ExMonCopy.Player{
-        life_points: 100,
-        moves: %{
-          average_attack: :tail_whip,
-          healing_power: :heal,
-          random_attack: :thunderbolt
-        },
-        name: "Pikachu"
-      }
-
-      iex> ExMonCopy.start_game(human_pokemon)
-      {:ok, #PID<0.450.0>}
-
+  Starts the game state.
   """
   def start(computer, human) do
     initial_value = %{
@@ -56,7 +39,7 @@ defmodule ExMonCopy.Game do
   end
 
   @doc """
-  Returns game info.
+  Returns the current game state.
 
   ## Examples
 
@@ -102,7 +85,7 @@ defmodule ExMonCopy.Game do
   """
   def update(updated_game_info) do
     Agent.update(__MODULE__, fn _previous_game_info ->
-      updated_game_info |> update_game_status
+      updated_game_info |> update_game_status()
     end)
   end
 
