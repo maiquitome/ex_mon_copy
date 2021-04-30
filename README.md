@@ -1,6 +1,33 @@
-### 1. Creating the player
+<div align="center">
+  <h1>ExMon: A Pokemon-style game</h1>
+  <img src=".github/Pikachu_Hello.gif">
+  <h2>
+  This project is part of the Udemy course: Elixir e Phoenix do zero! Crie sua primeira API Phoenix.
+  </h2>
+  <br>
+</div>
+
+## 🎮 Game explanation
+* Turn based game where we will have a human against the computer;
+* At the start of the game, the human will be able to choose his character's name, as well as the name of his 3 moves.
+* Human and computer start with 100 life points;
+* Each round, each can do one of 3 moves:
+  - Average attack causing between (18-25) damage;
+  - Random attack causing between (10-35) damage;
+  - Healing power, healing between (18-25) of life.
+* At each movement, the screen should display what happened and the situation of each player;
+* If you or the computer have 0 life left, the game ends:
+  - If someone loses, when displaying the result, it should not be displayed that any player was left with negative life.
+
+<div align="center">
+
+## 🖥️ Final result
+
+</div>
+
+### 1. Creating my pokemon
 ```bash
-iex> ExMonCopy.Player.build("Pikachu", :thunderbolt, :tail_whip, :heal)
+iex(1)> my_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
 %ExMonCopy.Player{
   life_points: 100,
   moves: %{
@@ -11,70 +38,11 @@ iex> ExMonCopy.Player.build("Pikachu", :thunderbolt, :tail_whip, :heal)
   name: "Pikachu"
 }
 ```
+### 2. Starting the game
+```bash
+iex(2)> ExMonCopy.start_game(my_pokemon)
 
-### 2. Creating the player in the main module
-```bash
-iex> ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-%ExMonCopy.Player{
-  life_points: 100,
-  moves: %{
-    average_attack: :tail_whip,
-    healing_power: :heal,
-    random_attack: :thunderbolt
-  },
-  name: "Pikachu"
-}
-```
-
-### 3. Starting the game
-```bash
-iex> human_pokemon = ExMonCopy.create_player("Pikachu", :thunderbolt, :tail_whip, :heal)
-%ExMonCopy.Player{
-  life_points: 100,
-  moves: %{
-    average_attack: :tail_whip,
-    healing_power: :heal,
-    random_attack: :thunderbolt
-  },
-  name: "Pikachu"
-}
-```
-```bash
-iex> ExMonCopy.start_game(human_pokemon)
-{:ok, #PID<0.450.0>}
-```
-
-### 4. Printing game info
-```bash
-iex> ExMonCopy.Game.info
-%{
-  computer: %ExMonCopy.Player{
-    life_points: 100,
-    moves: %{
-      average_attack: :claw_slash,
-      healing_power: :heal,
-      random_attack: :fire_spin
-    },
-    name: "Charizard"
-  },
-  human: %ExMonCopy.Player{
-    life_points: 100,
-    moves: %{
-      average_attack: :tail_whip,
-      healing_power: :heal,
-      random_attack: :thunderbolt
-    },
-    name: "Pikachu"
-  },
-  status: :started,
-  turn: :human
-}
-```
-### 5. Printing the round message
-```bash
-iex> ExMonCopy.start_game(human_pokemon)
-
- ===== The game is started! =====
+===== The game is started! =====
 
 %{
   computer: %ExMonCopy.Player{
@@ -98,223 +66,23 @@ iex> ExMonCopy.start_game(human_pokemon)
   status: :started,
   turn: :human
 }
------------------------------------
-:ok
-```
-### 6. Returns the human pokemon data
-```bash
-iex> ExMonCopy.Game.fetch_player(:human)
-%ExMonCopy.Player{
-  life_points: 100,
-  moves: %{
-    average_attack: :tail_whip,
-    healing_power: :heal,
-    random_attack: :thunderbolt
-  },
-  name: "Pikachu"
-}
-```
-### 7. Returns the computer pokemon data
-```bash
-iex> ExMonCopy.Game.fetch_player(:computer)
-%ExMonCopy.Player{
-  life_points: 100,
-  moves: %{
-    average_attack: :claw_slash,
-    healing_power: :heal,
-    random_attack: :fire_spin
-  },
-  name: "Charizard"
-}
-```
 
-### 8. Checks whether the movement exists or not
-exists
-```bash
-iex> ExMonCopy.Game.Actions.fetch_move(:thunderbolt)
-{:ok, :random_attack}
-```
-not
-```bash
-iex> ExMonCopy.Game.Actions.fetch_move(:test)
-{:error, :test}
-```
-
-### 9. Printing error or success message when making the move.
-```bash
-iex> ExMonCopy.make_move(:teste)
-
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          Invalid Move: teste
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------
 
 :ok
 ```
+### 3. I attacked the computer but the computer recoverd life points
 ```bash
-iex> ExMonCopy.make_move(:heal)
-"performs healing"
-```
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-"performs attack"
-```
+iex(3)> ExMonCopy.make_move(:thunderbolt)
 
-### 10. Printing a random number when attacking
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-26
-iex> ExMonCopy.make_move(:thunderbolt)
-15
-iex> ExMonCopy.make_move(:thunderbolt)
-10
-```
-
-### 11. Causing damage to the opponent
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-%ExMonCopy.Player{
-  life_points: 75,
-  moves: %{
-    average_attack: :claw_slash,
-    healing_power: :heal,
-    random_attack: :fire_spin
-  },
-  name: "Charizard"
-}
-```
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-%ExMonCopy.Player{
-  life_points: 85,
-  moves: %{
-    average_attack: :claw_slash,
-    healing_power: :heal,
-    random_attack: :fire_spin
-  },
-  name: "Charizard"
-}
-```
-!!! Elixir is immutable, so we always need to _reassign_ the values
-
-### 12. Changing the game state
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-
-===== You attacked the computer causing 34 damage. =====
+===== You attacked the computer causing 31 damage. =====
 
 
-===== It is the computer turn to play =====
+===== It's the computer's turn to play =====
 
 %{
   computer: %ExMonCopy.Player{
-    life_points: 66,
-    moves: %{
-      average_attack: :claw_slash,
-      healing_power: :heal,
-      random_attack: :fire_spin
-    },
-    name: "Charizard"
-  },
-  human: %ExMonCopy.Player{
-    life_points: 100,
-    moves: %{
-      average_attack: :tail_whip,
-      healing_power: :heal,
-      random_attack: :thunderbolt
-    },
-    name: "Pikachu"
-  },
-  status: :continue,
-  turn: :computer
-}
-
-------------------------------------------
-:ok
-```
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-
-===== The computer attacked you causing 11 damage. =====
-
-
-========= It is your turn to play! =========
-
-%{
-  computer: %ExMonCopy.Player{
-    life_points: 66,
-    moves: %{
-      average_attack: :claw_slash,
-      healing_power: :heal,
-      random_attack: :fire_spin
-    },
-    name: "Charizard"
-  },
-  human: %ExMonCopy.Player{
-    life_points: 89,
-    moves: %{
-      average_attack: :tail_whip,
-      healing_power: :heal,
-      random_attack: :thunderbolt
-    },
-    name: "Pikachu"
-  },
-  status: :continue,
-  turn: :human
-}
-
---------------------------------------------
-
-:ok
-```
-### 13. Creating the healing action
-
-```bash
-iex> ExMonCopy.make_move(:heal)
-
-===== You recovered yourself to 68 life points. =====
-
-
-===== It is the computer turn to play =====
-
-%{
-  computer: %ExMonCopy.Player{
-    life_points: 59,
-    moves: %{
-      average_attack: :claw_slash,
-      healing_power: :heal,
-      random_attack: :fire_spin
-    },
-    name: "Charizard"
-  },
-  human: %ExMonCopy.Player{
-    life_points: 68,
-    moves: %{
-      average_attack: :tail_whip,
-      healing_power: :heal,
-      random_attack: :thunderbolt
-    },
-    name: "Pikachu"
-  },
-  status: :continue,
-  turn: :computer
-}
-
-------------------------------------------
-
-:ok
-```
-### 14. Creating the computer turn
-```bash
-iex> ExMonCopy.make_move(:thunderbolt)
-
-===== You attacked the computer causing 12 damage. =====
-
-
-===== It is the computer turn to play =====
-
-%{
-  computer: %ExMonCopy.Player{
-    life_points: 88,
+    life_points: 69,
     moves: %{
       average_attack: :claw_slash,
       healing_power: :heal,
@@ -338,14 +106,14 @@ iex> ExMonCopy.make_move(:thunderbolt)
 ------------------------------------------
 
 
-===== The computer attacked you causing 22 damage. =====
+===== The computer recovered itself to 90 life points. =====
 
 
-========= It is your turn to play! =========
+========= It's your turn to play! =========
 
 %{
   computer: %ExMonCopy.Player{
-    life_points: 88,
+    life_points: 90,
     moves: %{
       average_attack: :claw_slash,
       healing_power: :heal,
@@ -354,7 +122,7 @@ iex> ExMonCopy.make_move(:thunderbolt)
     name: "Charizard"
   },
   human: %ExMonCopy.Player{
-    life_points: 78,
+    life_points: 100,
     moves: %{
       average_attack: :tail_whip,
       healing_power: :heal,
@@ -370,3 +138,53 @@ iex> ExMonCopy.make_move(:thunderbolt)
 
 :ok
 ```
+### 4. After many attacks, the game is over!
+```bash
+iex(8)> ExMonCopy.make_move(:thunderbolt)
+
+===== You attacked the computer causing 2 damage. =====
+
+%{
+  computer: %ExMonCopy.Player{
+    life_points: 0,
+    moves: %{
+      average_attack: :claw_slash,
+      healing_power: :heal,
+      random_attack: :fire_spin
+    },
+    name: "Charizard"
+  },
+  human: %ExMonCopy.Player{
+    life_points: 19,
+    moves: %{
+      average_attack: :tail_whip,
+      healing_power: :heal,
+      random_attack: :thunderbolt
+    },
+    name: "Pikachu"
+  },
+  status: :game_over,
+  turn: :human
+}
+
+    ============================================
+    ============= The game is over! ============
+    ============================================
+    ================ YOU WIN :) ================
+    ============================================
+
+:ok
+```
+
+Made with ♥ by Maiqui Tomé 😀
+<br>
+
+*Reach out to me* 👇
+
+[![Codepen](https://img.shields.io/badge/Codepen-000000?style=flat-square&logo=codepen&logoColor=white "Codepen")](https://codepen.io/maiquitome)
+[![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white "Youtube")](https://www.youtube.com/channel/UCoXn0XyxLsKpIE5px0UNuEw)
+[![Medium](https://img.shields.io/badge/Medium-black?&style=flat-square&logo=medium&logoColor=white "Medium")](https://medium.com/@maiquitome)
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0A66C2.svg?&style=flat-square&logo=linkedin&logoColor=white "Linkedin")](https://www.linkedin.com/in/maiquitome)
+[![Instagram](https://img.shields.io/badge/Instagram-D8226B.svg?&style=flat-square&logo=instagram&logoColor=white "Instagram")](https://www.instagram.com/maiquitome)
+[![Facebook](https://img.shields.io/badge/Facebook-0674E7.svg?&style=flat-square&logo=facebook&logoColor=white "Facebook")](https://www.facebook.com/maiquitome)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?&style=flat-square&logo=twitter&logoColor=white "Twitter")](https://twitter.com/MaiquiTome)
