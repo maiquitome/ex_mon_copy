@@ -19,11 +19,7 @@
 * If you or the computer have 0 life left, the game ends:
   - If someone loses, when displaying the result, it should not be displayed that any player was left with negative life.
 
-<div align="center">
-
 ## 🖥️ Final result
-
-</div>
 
 ### 1. Creating my pokemon
 ```bash
